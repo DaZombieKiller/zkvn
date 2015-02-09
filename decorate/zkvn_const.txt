@@ -1,0 +1,16 @@
+// ZKVN Constants
+// Script constants for Zandronum builds
+const int SCR_VN_ADD_DIALOGUE = 201;
+const int SCR_VN_ADD_CHOICE = 202;
+const int SCR_VN_ADD_CHOICE_START = 203;
+const int SCR_VN_ADD_CHOICE_END = 204;
+const int SCR_VN_ISQUEUEEMPTY = 205;
+const int SCR_VN_SET_HOLD_TIME = 206;
+const int SCR_VN_CHOICE_MADE = 207;
+const int SCR_VN_CHOICE_DONE = 208;
+const int SCR_VN_FORCE_FADEIN = 209;
+const int SCR_VN_SET_GRAPHIC_SIZE = 210;
+const int SCR_VN_VOICE_ACTING_ON = 211;
+const int SCR_VN_VOICE_ACTING_OFF = 212;
+const int SCR_VN_SET_GRAPHIC_POS = 213;
+const int SCR_VN_SET_FADE_TIME = 214;

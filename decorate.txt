@@ -1,0 +1,92 @@
+// ZKVN Engine
+// (G)ZDoom Edition
+// Decorate
+
+// Constants
+#include "decorate/zkvn_const.txt"
+const int VNC_MRNOBODY = 1;
+
+// Mr Nobody
+ACTOR MrNobody : SwitchingDecoration 1337
+{
+	//$Category ZK-VN Demo
+	//$Title "Mr. Nobody"
+	//$Sprite TROOA1
+	Radius 20
+	Height 56
+	Activation THINGSPEC_Switch|THINGSPEC_ThingTargets
+	+USESPECIAL
+	+SOLID
+	States
+	{
+	Spawn:
+		TROO A 1
+		Loop
+	Active:
+		// Prevent multiple dialogue activations
+		TNT1 A 0 A_ChangeFlag("USESPECIAL", false)
+		
+		//
+		// Make sure that you use ACS_NamedExecuteWithResult or CallACS for all scripts or
+		// you will run into issues.
+		//
+		// Syntax:
+		// SetHoldTime, <Hold Time>
+		// AddDialogue, <Character ID>, <Graphic ID>, <Dialogue ID>
+		// AddChoice, <Language Choice ID>, <Custom Choice ID>
+		// AddChoiceStart, <Type>, <Numbered> // Type 0 = Default, Type 1 = Alternate, Type 2 = Default with UI, Type 3 = Alternate with UI
+		// AddChoiceEnd // This script is a marker, so it takes no arguments
+		// ChoiceMade // This script will return the custom choice ID of the last choice the player made
+		// ChoiceDone // This script should be used inside A_JumpIf and followed by a "Wait"
+		// IsQueueEmpty // This script should be used inside A_JumpIf and followed by a "Wait"
+		// ForceFadeIn // Forces the next piece of dialogue to fade in
+		// SetGraphicSize, <Width>, <Height>
+		// SetGraphicPos, <X Pos> * 65536, <Y Pos> * 65536
+		// VoiceActingOn // Turns on voice acting
+		// VoiceActingOff // Turns off voice acting
+		// SetFadeTime, <Fade Time> * 65536
+		//
+		// Commands that take floating point values (such as SetGraphicPos and SetFadeTime)
+		// must have " * 65536" after the values. This is due to a decorate limitation.
+		//
+		// The "custom choice ID" is a number that you associate with the choice,
+		// which is unique to the choice. "ChoiceMade" uses this number rather
+		// than the language choice ID because this way it allows more control over conversations.
+		//
+		// If the Graphic ID is -1, then no graphic will be displayed.
+		// This is useful if you want to have dialogue with no portrait.
+		//
+		TNT1 A 0 A_FaceTarget
+		// Using SetGraphicSize, SetGraphicPos and SetFadeTime isn't really required here, as "1280x960", "0.5, 0.5" and "1.0" are the default values.
+		// They are only used here to show HOW to use them. Also note that SetFadeTime isn't really useful outside of the VERY beginning of a dialogue,
+		// or in the rare case that ForceFadeIn gets used.
+		TNT1 A 0 ACS_NamedExecuteWithResult("SetFadeTime", 1.0 * 65536)
+		TNT1 A 0 ACS_NamedExecuteWithResult("SetGraphicSize", 1280, 960) // Mr. Nobody's graphic is 1280x960 pixels
+		TNT1 A 0 ACS_NamedExecuteWithResult("SetGraphicPos", 0.5 * 65536, 0.5 * 65536) // Set character portrait position to 0.5, 0.5
+		TNT1 A 0 ACS_NamedExecuteWithResult("SetHoldTime", -1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddDialogue", VNC_MRNOBODY, 1, 1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddChoiceStart") // Using AddChoiceStart with no parameters will make it use type 0 without numbering
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddChoice", 1, 1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddChoice", 2, 2)
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddChoiceEnd")
+		TROO A 1 A_JumpIf(CallACS("ChoiceDone"), 1)
+		Wait
+		TNT1 A 0 A_JumpIf(1 == CallACS("ChoiceMade"), "Choice1")
+		TNT1 A 0 A_JumpIf(2 == CallACS("ChoiceMade"), "Choice2")
+		Goto Done
+		
+	Choice1:
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddDialogue", VNC_MRNOBODY, 1, 2)
+		Goto Done
+	Choice2:
+		TNT1 A 0 ACS_NamedExecuteWithResult("AddDialogue", VNC_MRNOBODY, 1, 3)
+		Goto Done
+		
+	Done:
+		// Here we wait for the stack to empty (all dialogue to be cleared)
+		TROO A 1 A_JumpIf(CallACS("IsQueueEmpty"), 1)
+		Wait
+		TNT1 A 0 A_ChangeFlag("USESPECIAL", true)
+		Goto Spawn
+	}
+}
