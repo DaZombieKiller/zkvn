@@ -123,3 +123,13 @@ ACTOR MrNobody : SwitchingDecoration 1337
 ```
 
 Something that I neglected to mention in the comments, is that if you set the hold time to -1, then the dialogue will not automatically advance.
+
+##### How do I compile the source code?
+In order to compile the ZKVN source code, you will need to get a copy of GDCC, which is a C to ACS compiler.
+GDCC is open-source software, its source code can be obtained at:
+[https://github.com/DavidPH/GDCC](https://github.com/DavidPH/GDCC)
+
+1. Download the latest version of GDCC from [here](https://www.dropbox.com/sh/e4msp35vxp61ztg/AAALcmttOua20tkcs82NoElWa). The latest version will always be at the bottom. Get either the "Win32" or "Win64" version depending on your computer.
+2. Extract the archive to the /source/GDCC/ folder, which should be located wherever the ZKVN source is.
+3. To compile for ZDoom and GZDoom, click on "build-zdoom.bat". To compile for Zandronum 2.0 and up, click on "build-zan.bat".
+4. Wait for the compile process to finish, and then you should find a freshly compiled "zkvn.bin" in the "acs" folder.
