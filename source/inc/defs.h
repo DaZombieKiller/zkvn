@@ -69,7 +69,6 @@
 #define off 0
 #define on 1
 
-typedef __fixed fixed;
 typedef int flag_t;
 typedef __str acstr_t;
 
