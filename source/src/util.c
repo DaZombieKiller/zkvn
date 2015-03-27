@@ -12,7 +12,7 @@ acstr_t ctoacstr (const char *cstring)
 {
 	ACS_BeginPrint();
 	__nprintf("%s", cstring);
-	return ACS_EndString();
+	return ACS_EndStrParam();
 }
 
 // Converts an ACS string to a C string
@@ -48,7 +48,7 @@ acstr_t GetPlayerName (int index)
 {
 	ACS_BeginPrint();
 	ACS_PrintName(index);
-	return ACS_EndString();
+	return ACS_EndStrParam();
 }
 
 // Find an unused TID
@@ -76,7 +76,7 @@ acstr_t ACS_StrParam (const char *format, ...)
 	__vnprintf(format, arg);
 	va_end(arg);
 	
-	return ACS_EndString();
+	return ACS_EndStrParam();
 }
 
 int ACS_Print (const char *format, ...)
