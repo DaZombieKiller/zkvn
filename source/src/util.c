@@ -10,7 +10,7 @@
 // Gross hack to convert a C string to an ACS string using __nprintf.
 acstr_t ctoacstr (const char *cstring)
 {
-	ACS_BeginPrint();
+	ACS_BeginStrParam();
 	__nprintf("%s", cstring);
 	return ACS_EndStrParam();
 }
@@ -46,7 +46,7 @@ accum atok (char *str)
 // Gross hack to get the player's name, by printing it to a string.
 acstr_t GetPlayerName (int index)
 {
-	ACS_BeginPrint();
+	ACS_BeginStrParam();
 	ACS_PrintName(index);
 	return ACS_EndStrParam();
 }
@@ -70,7 +70,7 @@ acstr_t ACS_StrParam (const char *format, ...)
 {
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginStrParam();
 	
 	va_start(arg, format);
 	__vnprintf(format, arg);
@@ -99,7 +99,7 @@ int ACS_PrintBold (const char *format, ...)
 	int ret;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginPrintBold();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
@@ -115,7 +115,7 @@ int ACS_PrintLog (const char *format, ...)
 	int ret;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginLog();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
@@ -130,7 +130,7 @@ int ACS_HudMessage (int flags, int id, int color, fixed x, fixed y, fixed holdTi
 	int ret = 0;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginHudMessage();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
@@ -148,7 +148,7 @@ int ACS_HudMessageX (int flags, int id, int color, fixed x, fixed y, fixed holdT
 	int ret = 0;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginHudMessage();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
@@ -166,7 +166,7 @@ int ACS_HudMessageXX (int flags, int id, int color, fixed x, fixed y, fixed hold
 	int ret = 0;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginHudMessage();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
@@ -184,7 +184,7 @@ int ACS_HudMessageXXX (int flags, int id, int color, fixed x, fixed y, fixed hol
 	int ret = 0;
 	va_list arg;
 	
-	ACS_BeginPrint();
+	ACS_BeginHudMessage();
 	
 	va_start(arg, format);
 	ret = __vnprintf(format, arg);
