@@ -2,7 +2,7 @@
 #define INC_DEFS_H_
 
 #ifdef ZAN_ACS
-#include <ACS_Zandronum.h>
+#include "acs_compat/ACS_Zandronum_Compat.h"
 #else
 #include <ACS_ZDoom.h>
 #endif
@@ -27,7 +27,11 @@
 #ifdef ZAN_ACS
 #define Z_SCRIPT(n) EXTACS [[address(n), call("ScriptI")]]
 #else
+#ifdef ZAN_COMPAT
+#define Z_SCRIPT(n) EXTACS [[address(n), call("ScriptI")]]
+#else
 #define Z_SCRIPT(n) EXTACS [[call("ScriptS")]]
+#endif
 #endif
 
 // Definitions for color codes
@@ -65,6 +69,8 @@
 #else
 #define MAX_PLAYERS 8
 #endif
+
+#define MAX_TIDS 65536
 
 #define off 0
 #define on 1

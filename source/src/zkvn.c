@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <stdfix.h>
 #include "util.h"
-#include "util_math.h"
 #include "zkvn.h"
 
 // Variables

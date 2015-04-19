@@ -1,9 +1,7 @@
 // ZKVN Engine
-// (G)ZDoom Edition
 // Decorate
 
 // Constants
-#include "decorate/zkvn_const.txt"
 const int VNC_MRNOBODY = 1;
 
 // Mr Nobody
