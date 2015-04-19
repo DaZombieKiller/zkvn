@@ -8,7 +8,7 @@ set CC=.\GDCC\gdcc-cc.exe
 set AS=.\GDCC\gdcc-as.exe
 set LD=.\GDCC\gdcc-ld.exe
 set PROJECT_NAME=zkvn
-set ZANDRONUM_COMPILE=0
+set ZANDRONUM_COMPILE=1
 if exist .\bin del .\bin /s /q >nul 2>&1
 if not exist .\bin mkdir .\bin
 if not exist .\bin\libgdcc mkdir .\bin\libgdcc
